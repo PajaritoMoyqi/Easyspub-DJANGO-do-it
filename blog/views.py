@@ -1,8 +1,15 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 from .models import Post
+
+class PostList(ListView):
+  model = Post
+  # template_name = 'blog/index.html'
+  ordering = '-pk'
 
 # Create your views here.
 
+'''
 def index(request):
   posts = Post.objects.all().order_by('-pk')
 
@@ -13,7 +20,7 @@ def index(request):
       'posts': posts,
     }
   )
-
+'''
 def single_post_page(request, pk):
   post = Post.objects.get(pk=pk)
 
