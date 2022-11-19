@@ -1,0 +1,8 @@
+body {
+  background: url('/static/single_pages/images/banner5.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+section {
+  margin-bottom: 150px;
+}
