@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}
     {{ post.title }} - Blog
@@ -67,7 +68,17 @@
         <div class="card bg-light">
             <div class="card-body">
                 <!-- Comment form-->
-                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                {% if user.is_authenticated %}
+                    <form id="comment-form" class="mb-4" method="POST" action="{{ post.get_absolute_url }}new_comment/">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ comment_form | crispy }}
+                        </div>
+                        <button type="submit">submit</button>
+                    </form>
+                {% else %}
+                    <a rol="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
+                {% endif %}
                 <!-- Comment with nested comments-->
                 {% if post.comment_set.exists %}
                     {% for comment in post.comment_set.iterator %}

@@ -286,3 +286,51 @@ class TestView(TestCase):
     self.assertIn('한글 태그', main_area.text)
     self.assertIn('some tag', main_area.text)
     self.assertNotIn('python', main_area.text)
+
+  # def test_comment_form(self):
+  #   self.assertEqual(Comment.objects.count(), 1)
+  #   self.assertEqual(self.post_001.comment_set.count(), 1)
+
+  #   # not logged-in
+  #   response = self.client.get(self.post_001.get_absolute_url())
+  #   self.assertEqual(response.status_code, 200)
+  #   soup = BeautifulSoup(response.content, 'html.parser')
+
+  #   comments_area = soup.find('section', id="comment-area")
+  #   self.assertIn('Log in and leave a comment', comments_area.text)
+  #   self.assertFalse(comments_area.find('form', id="comment-form"))
+
+  #   # logged-in
+  #   self.client.login(username='mmol', password="password1234")
+  #   reponse = self.client.get(self.post_001.get_absolute_url())
+  #   self.assertEqual(response.status_code, 200)
+  #   soup = BeautifulSoup(response.content, 'html.parser')
+
+  #   comments_area = soup.find('section', id="comment-area")
+  #   self.assertNotIn('Log in and leave a comment', comments_area.text)
+
+  #   comment_form = comments_area.find('form', id="comment-form")
+  #   self.assertTrue(comment_form.find('textarea', id="id_content"))
+
+  #   response = self.client.post(
+  #     self.post_001.get_absolute_url() + 'new_comment/',
+  #     {
+  #       'content': "hello gg",
+  #     },
+  #     follow=True
+  #   )
+
+  #   self.assertEqual(response.status_code, 200)
+    
+  #   self.assertEqual(Comment.objects.count(), 2)
+  #   self.assertEqual(self.post_001.comment_set.count(), 2)
+
+  #   new_comment = Comment.objects.last()
+
+  #   soup = BeautifulSoup(response.content, 'html.parser')
+  #   self.assertIn(new_comment.post.title, soup.title.text)
+
+  #   comments_area = soup.find('section', id="comment-area")
+  #   new_comment_div = comments_area.find('div', id=f'comment-{new_comment.pk}')
+  #   self.assertIn('mmol', new_comment_div.text)
+  #   self.assertIn('hello gg', new_comment_div.text)
