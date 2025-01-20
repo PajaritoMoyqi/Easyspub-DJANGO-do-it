@@ -1,0 +1,1 @@
+Clone coded the book(이성용·김태곤, 『장고+부트스트랩 파이썬 웹 개발의 정석』) for Django and Bootstrap based web development study.
